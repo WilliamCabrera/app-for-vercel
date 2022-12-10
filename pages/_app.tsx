@@ -13,8 +13,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
    useEffect(()=>{
 
-    const handlerRouteChange = (url)=>{
-      pageview(url)
+    if(typeof window !== "undefined")
+       pageview(window.location.pathname + window.location.search)
+    
+        const handlerRouteChange = (url)=>{
+      
     }
 
     router.events.on("routeChangeComplete", handlerRouteChange);
@@ -23,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeComplete", handlerRouteChange);
     };
 
-   },[router.events])
+   },[router.pathname])
 
   return <> 
   
